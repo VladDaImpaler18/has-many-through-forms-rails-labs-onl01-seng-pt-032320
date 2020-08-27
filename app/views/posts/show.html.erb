@@ -1,1 +1,14 @@
+<h1>Show page!</h1>
+<%= @post.title %>
+<h3>Categories</h3><br>
+<% @post.categories.each do |category| %>
+    <%= category.name %><br>
+<% end %>
+<%= @post.content %>
 
+<h3>Comments:</h3><br>
+<% @post.comments.each do |comment| %>
+    <% user = User.find_by(id: comment.user_id) %>
+    <%= comment.content %>
+    <%= link_to user.username, user_path(user) %>
+<% end %>
